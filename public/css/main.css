@@ -1,0 +1,24 @@
+body{
+  font-family: 'Poppins', sans-serif;;
+}
+.btn {
+  border-radius: 0;
+}
+.btn:focus{
+  outline: 0;
+  box-shadow: 0 0 0 0rem rgba(13,110,253,.25);
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0077B6;
+}
+
+.card.form__container
+{
+  margin: auto;
+  width: 40%;
+}

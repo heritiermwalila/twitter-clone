@@ -1,0 +1,25 @@
+extends layouts/main.pug
+
+block content
+  .container.login__container
+    .card.form__container
+      .card-header
+        h3.panel-title Sign Up
+      .card-body
+        form(action="", method="post")
+          .form-group.mb-2
+            label.pt-2.pb-2 Username
+            input.form-control(type="text", placeholder="patterson", required="")
+
+          .form-group.mb-2
+            label.pt-2.pb-2 Email
+            input.form-control(type="text", placeholder="john@gmail.com", required="")
+          .form-group
+            label.pt-2.pb-2 Password
+            input.form-control(type="password", placeholder="******", required="")
+      .card-footer
+        .form-group.d-flex.justify-content-between
+            div
+              button.btn.btn-success.mr-2(type="submit") Register
+              a.btn.btn-primary(href="/auth/login") Login
+            
