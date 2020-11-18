@@ -1,7 +1,7 @@
 import { validationResult } from "express-validator";
 import User from '../core/schema/user.schema'
 import { getErrorParam } from "../core/validation/auth.validation";
-import {genSalt, hash} from 'bcryptjs'
+import {genSalt, hash, compare} from 'bcryptjs'
 
 /**
  * 
@@ -24,7 +24,7 @@ const Login = (req, res, next) => {
  * @param {*} res 
  * @param {*} next 
  */
-export const PostLogin = (req, res, next) => {
+export const PostLogin = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     let errors = [];
@@ -33,14 +33,36 @@ export const PostLogin = (req, res, next) => {
       errors = validationErrors;
     }
 
-    res.status(200).render("login", {
-      title: "Login",
-      errors: {
-        username: getErrorParam(errors, "username"),
-        password: getErrorParam(errors, "password"),
-      },
-      form: { username },
-    });
+    const user = await User.findOne({
+      $or: [
+        {username},
+        {email: username}
+      ]
+    })
+
+    if(!user){
+      errors.push({msg: 'Invalid username or password', param: 'username'})
+    }
+
+    if(errors.length > 0){
+      res.status(200).render("login", {
+        title: "Login",
+        errors: {
+          username: getErrorParam(errors, "username"),
+          password: getErrorParam(errors, "password"),
+        },
+        form: { username },
+      });
+    }
+    //Compare the password
+    const isValidPassword = await compare(password, user.password)
+    if(isValidPassword){
+      req.session.user = user._id
+      res.status(200).redirect('/')
+    }
+    
+    // res.status(200).redirect('/')
+    
    
   } catch (error) {}
 };
@@ -105,12 +127,19 @@ export const PostRegister = async (req, res, next) => {
 
     
 
-    const usernameExist = await User.exists({username})
+    const userExist = await User.findOne({
+      $or: [
+        {username},
+        {email}
+      ]
+    })
     const emailExist = await User.exists({email})
 
-    if(usernameExist || emailExist){
-      errors.push({param: usernameExist ? 'username' : 'email', msg: usernameExist ? 'This username is taken' : 'This email address is in used'})
-    }
+    console.log(emailExist);
+
+    // if(userExist){
+    //   errors.push({param: userExist ? 'username' : 'email', msg: usernameExist ? 'This username is taken' : 'This email address is in used'})
+    // }
 
     if(errors.length > 0){
       return res

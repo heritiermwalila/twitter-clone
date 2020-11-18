@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 html, body {
   height: 100%;
 }
@@ -16,25 +18,25 @@ body{
 .wrapper{
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #0077B6;
   height: 100%;
 }
+.sidebarleft,
+.sidebarright {
+  width: 20%;
+}
 
-.card.form__container
-{
-  margin: auto;
+.sidebarleft {
+  background-color: bisque;
+}
+
+.sidebarright {
+  background-color: cadetblue;
+}
+
+.timeline {
   width: 60%;
+  background-color: #f1f1f1;
 }
-
-.login__container {
-  height:100%;
-  padding: 20px;
-}
-.customField{
-  width: 100%;
-}
-
 .uppercase{
   text-transform: uppercase;
 }

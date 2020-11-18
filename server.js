@@ -26,10 +26,11 @@ app.use(express.static(join(__dirname, 'public')))
 
 app.use(
   session({
-    store: new RedisStore({ client: redisClient }),
+    store: new RedisStore({ client: redisClient, prefix: 'twitter'}),
     secret: "twitter-clone-2020",
     resave: false,
     saveUninitialized: true,
+    
   })
 );
 
