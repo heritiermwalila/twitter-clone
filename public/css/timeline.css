@@ -70,3 +70,8 @@
     align-items: center;
     color: var(--third_primary);
 }
+
+.timeline_post_item_action {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 10px;
+}
