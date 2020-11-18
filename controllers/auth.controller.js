@@ -131,7 +131,7 @@ export const PostRegister = async (req, res, next) => {
 
     const {_id} = await new User({firstname, lastname, username, email, password: hashed}).save()
 
-   req.session.user = _id
+    req.session.user = _id
     
     res.status(200).redirect('/')
     
