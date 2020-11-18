@@ -1,9 +1,99 @@
 extends layouts/main.pug
 
+
+block sideleft
+  .container
+    .logo
+      a.icon-sign-language.h1
+    .menu
+      ul.pl-0
+        li.link-item
+          a.icon-home.link(href="/")  Home
+        li.link-item
+          a.link.icon-hashtag(href="/explore")  Explore
+        li.link-item
+          a.link.icon-bell(href="/notifications")  Notifications
+        li.link-item
+          a.link.icon-mail(href="/messages")  Messages
+        li.link-item
+          a.link.icon-user-o(href="/profile")  Profile
+        li.link-item
+          a.link.icon-menu(href="/more")  More
+    a.btn.btn-primary Speak
+    .profile
+      .avatar
+        image(src="/images/avatar.webp", width="49px" height="49px")
+      .content
+        span Heritier
+        span @HeritierMwalila
+
+
 block timeline
   .timeline__head
-    .head__title
+    .head__title.d-flex.align-items-center
       h2 Home
-    .head__body
+    .head__body.d-flex
       .avatar
-        image(src="/images/avatar.webp", width="70px")
+        image(src="/images/avatar.webp", width="49px" height="49px")
+      .head_body_content
+        form(action="")
+          textarea(name="", rows="1", placeholder="What is happening" class="form-control what_is_happening")
+          .everyone_can_reply
+            span.icon-globe
+            span Everyone can reply
+          .head_body_content_form_action
+            .icons_group.d-flex.align-items.center
+              span.icon-file-image
+              span.icon-file-video
+              span.icon-trello
+              span.icon-smile
+              span.icon-calendar-plus-o
+            button.btn.btn-primary speak
+
+
+    .head__end
+
+
+block sideright
+  .container.pt-2
+    .search__bar
+      form(action="", method="post")
+        .input-group
+          input.form-control(type="text")
+          button.icon-search.btn.btn-outline-secondary(type="submit")
+    .trend_for_you.mt-4
+      .list-group.trend
+        .list-group-item
+          h4.h5.mb-0 Trends for you
+        .list-group-item 
+          span Trending in south africa
+          h5 #PrayForEmtee
+          span 2, 2442 claps
+        .list-group-item 
+          span Trending in south africa
+          h5 Teddy
+          span 2, 2442 claps
+        .list-group-item 
+          span Trending in south africa
+          h5 #PrayForEmtee
+          span 2, 2442 claps
+        .list-group-item 
+          span Trending in south africa
+          h5 #PrayForEmtee
+          span 2, 2442 claps
+        .list-group-item 
+          span Trending in south africa
+          h5 #PrayForEmtee
+          span 2, 2442 claps
+    
+    .who_will_follow.mt-3
+      .list-group-item
+        h4.h5.mb-0 Who to follow
+      .list-group-item.d-flex.align-items-center.justify-content-between
+          span.icon-hashtag.h5
+          .content
+            h4.user-title.mb-0 Huawei Europe
+            span @huaweieurope
+          button.btn.btn-default follow
+
+      

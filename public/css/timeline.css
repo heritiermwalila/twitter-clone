@@ -1,0 +1,72 @@
+.timeline__head {
+    border-bottom: 1px solid rgb(230, 236, 240);
+}
+.head__title {
+    height: 53px;
+    border-bottom: 1px solid rgb(230, 236, 240);
+    display: flex;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.head__title h2 {
+    font-size: 100%;
+}
+
+.head__body{
+    padding: 10px;
+    height: 158px;
+}
+.head__end{
+    height: 10px;
+    background-color: rgb(230, 236, 240);
+}
+
+.head_body_content {
+    padding-left: 10px;
+    width: 100%;
+}
+
+.head_body_content_title{
+    font-weight: 300;
+    font-size: 20px
+}
+
+.what_is_happening {
+    border: 0;
+    border-radius: unset;
+    padding: 18px 0;
+}
+
+.head__body > .avatar {
+    width: 10%;
+} 
+
+.head_body_content_form_action{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0 ;
+    border-top: 1px solid #f1f1f1;
+}
+.everyone_can_reply{
+    padding: 5px 0;
+    color: var(--second_primary)
+}
+.everyone_can_reply span:nth-child(2){
+    font-size: 14px;
+    font-weight: 600;
+}
+.icons_group > [class^='icon-']{
+    width: 37px;
+    height: 37px;
+    display: block;
+    
+}
+.icons_group > [class^='icon-']::before{
+    font-size: 22px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    color: var(--third_primary);
+}

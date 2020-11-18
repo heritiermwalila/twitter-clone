@@ -1,42 +1,6 @@
+@import 'colors.css';
 @import "/lib/bootstrap/css/bootstrap.min.css";
-
-html, body {
-  height: 100%;
-}
-body{
-  font-family: 'Poppins', sans-serif;
-
-}
-.btn {
-  border-radius: 0;
-}
-.btn:focus{
-  outline: 0;
-  box-shadow: 0 0 0 0rem rgba(13,110,253,.25);
-}
-
-.wrapper{
-  display: flex;
-  justify-content: center;
-  height: 100%;
-}
-.sidebarleft,
-.sidebarright {
-  width: 20%;
-}
-
-.sidebarleft {
-  background-color: bisque;
-}
-
-.sidebarright {
-  background-color: cadetblue;
-}
-
-.timeline {
-  width: 60%;
-  background-color: #f1f1f1;
-}
-.uppercase{
-  text-transform: uppercase;
-}
+@import 'init.css';
+@import 'timeline.css';
+@import 'sideleft.css';
+@import 'sideright.css';

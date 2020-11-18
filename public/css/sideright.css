@@ -1,0 +1,26 @@
+.trend{
+    font-size: 15px;
+}
+
+.trend .list-group-item span{
+    font-size: 12px;
+    opacity: .6;
+}
+
+.trend .list-group-item h5{
+    font-size: 100%;
+    padding-top: 5px;
+}
+
+.who_will_follow .list-group-item .content{
+    line-height: 16px;
+}
+
+.who_will_follow .list-group-item .content h4{
+    font-size: 16px;
+}
+
+.who_will_follow .list-group-item .content span {
+    font-size: 12px;
+    opacity: .5;
+}
