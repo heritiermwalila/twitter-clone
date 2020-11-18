@@ -1,0 +1,48 @@
+extends layouts/main.pug
+
+block content
+    if step === 'enter-code'        
+      form.container.login__container(action="", method="post")
+        .card.form__container
+          .card-header
+            h3.panel-title Verify code
+          .card-body
+              .form-group.mb-2
+                label.pt-2.pb-2 Enter your code
+                input.form-control(class=errors['code'] ? 'is-invalid' : '', type="text", placeholder="******", name="code")
+                unless !errors['code']
+                .invalid-feedback #{errors['code']}
+
+          .card-footer
+            .form-group
+                button.btn.btn-primary(type="submit") Verify
+
+    else if step === 'new-password'        
+      form.container.login__container(action="", method="post")
+        .card.form__container
+          .card-header
+            h3.panel-title Reset password
+          .card-body
+              .form-group.mb-2
+                label.pt-2.pb-2 Enter your email address
+                input.form-control(type="text", placeholder="john@gmail.com")
+          .card-footer
+            .form-group
+                button.btn.btn-primary(type="submit") submit
+                a.btn.btn-default(href="/auth/login") Login
+    else 
+      form.container.login__container(action="", method="post")
+        .card.form__container
+          .card-header
+            h3.panel-title Reset password
+          .card-body
+              .form-group.mb-2
+                label.pt-2.pb-2 Enter your email address
+                input.form-control(class=errors['email'] ? 'is-invalid' : '', type="text", placeholder="john@gmail.com", name="email")
+                unless !errors['email']
+                .invalid-feedback #{errors['email']}
+
+          .card-footer
+            .form-group
+                button.btn.btn-primary(type="submit") submit
+                a.btn.btn-default(href="/auth/login") Login

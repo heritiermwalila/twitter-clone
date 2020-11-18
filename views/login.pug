@@ -8,17 +8,19 @@ block content
       .card-body
           .form-group.mb-2
             label.pt-2.pb-2 Username or Email
-            input.form-control(type="text", placeholder="john@gmail.com", name="username", value= form ? form.username : '')
+            input.form-control(class=errors['username'] ? 'is-invalid' : '', type="text", placeholder="john@gmail.com", name="username", value= form ? form.username : '')
+            unless !errors['username']
+                .invalid-feedback #{errors['username']}
+
           .form-group
             label.pt-2.pb-2 Password
-            input.form-control(type="password", placeholder="******", name="password")
+            input.form-control(class=errors['username'] ? 'is-invalid' : '', type="password", placeholder="******", name="password")
+            unless !errors['password']
+                .invalid-feedback #{errors['password']}
+
       .card-footer
         .form-group.d-flex.justify-content-between
             div
               button.btn.btn-primary.mr-2(type="submit") Login
               a.btn.btn-success(href="/auth/register") Register
-            a.btn.btn-default(href="/auth/forgot-password") Forgot password
-        .form-group.mt-2
-          ul
-            each error in errors
-              li #{error.msg}
+            a.btn.btn-default(href="/auth/reset/verify-email") Forgot password

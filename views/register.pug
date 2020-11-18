@@ -9,7 +9,7 @@ block content
           .d-flex.justify-content-between
             div.mb-2.mr-2.customField
               label.pt-2.pb-2 First name
-              input.form-control(class=errors['firstname'] ? 'is-invalid' : '', type="text", placeholder="patterson", name="firstname", value=form ? form.firstname : '')
+              input.form-control(class=errors['firstname'] ? 'is-invalid' : '', type="text", placeholder="Patterson", name="firstname", value=form ? form.firstname : '')
               unless !errors['firstname']
                 .invalid-feedback #{errors['firstname']}
 

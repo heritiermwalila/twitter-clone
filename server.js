@@ -16,7 +16,6 @@ const redisClient = redis.createClient();
 
 const server = http.createServer(app)
 
-
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug')
