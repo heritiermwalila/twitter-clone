@@ -1,4 +1,6 @@
 import { validationResult } from "express-validator";
+import User from '../core/schema/user.schema'
+import { getErrorParam } from "../core/validation/auth.validation";
 
 const Login = (req, res, next) => {
   try {
@@ -27,45 +29,67 @@ export const PostLogin = (req, res, next) => {
     res
       .status(200)
       .render("login", { title: "Login", errors, form: { username } });
-    /**
-     * Steps
-     * -------------------
-     * 1. Check the user in the db
-     * 2. Create a session
-     * 3. Redirect to home page
-     */
+   
   } catch (error) {}
 };
 
 const Register = (req, res, next) => {
   try {
-    res.status(200).render('register', {title: 'Register'})
+    res.status(200).render('register', {title: 'Register', errors: []})
   } catch (error) {
     
   }
 }
 
-export const PostRegister = (req, res, next) => {
+export const PostRegister = async (req, res, next) => {
   try {
     req.session.errors = null;
-    const { username, email, password, cpassword } = req.body;
+    const {firstname, lastname, username, email, password, cpassword } = req.body;
     let errors = [];
     const { errors: validationErrors } = validationResult(req);
     if (validationErrors.length > 0) {
       errors = validationErrors;
     }
     if (password !== cpassword) {
-      errors.push({ msg: "Passwords does not match" });
+      errors.push({ msg: "Passwords does not match", param: 'password' });
     }
 
-    res
+     /**
+     * Steps
+     * -------------------
+     * 1. Check the user in the db
+     * 2. Create a session
+     * 3. Redirect to home page
+     */
+    if(errors.length > 0){
+      return res
       .status(200)
       .render("register", {
         title: "Register",
-        errors,
-        form: { username, email },
+        errors:{
+          firstname: getErrorParam(errors, 'firstname'),
+          lastname: getErrorParam(errors, 'lastname'),
+          username: getErrorParam(errors, 'username'),
+          email: getErrorParam(errors, 'email'),
+          password: getErrorParam(errors, 'password'),
+        },
+        form: {firstname, lastname, username, email },
       });
-  } catch (error) {}
+    }
+
+    // const usernameExist = await User.exists({username})
+
+    // console.log(usernameExist);
+    res
+    .status(200)
+    .render("register", {
+      title: "Register",
+      form: {firstname, lastname, username, email },
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const ForgotPassword = (req, res, next) => {

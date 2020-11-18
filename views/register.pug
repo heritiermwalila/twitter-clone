@@ -2,26 +2,50 @@ extends layouts/main.pug
 
 block content
   .container.login__container
-    form.card.form__container(action="", method="post")
+    form.card.form__container(action="/auth/register", method="post")
       .card-header
-        h3.panel-title Sign Up
+        h3.panel-title.uppercase Sign Up
       .card-body
-          .form-group.mb-2
-            label.pt-2.pb-2 Username
-            input.form-control(type="text", placeholder="patterson", required="" name="username", value=form ? form.username : '')
+          .d-flex.justify-content-between
+            div.mb-2.mr-2.customField
+              label.pt-2.pb-2 First name
+              input.form-control(class=errors['firstname'] ? 'is-invalid' : '', type="text", placeholder="patterson", name="firstname", value=form ? form.firstname : '')
+              unless !errors['firstname']
+                .invalid-feedback #{errors['firstname']}
 
-          .form-group.mb-2
-            label.pt-2.pb-2 Email
-            input.form-control(type="email", placeholder="john@gmail.com", required="" name="email", value=form ? form.email : '')
-          .form-group
-            label.pt-2.pb-2 Password
-            input.form-control(type="password", placeholder="******", required="" name="password")
-          .form-group
-            label.pt-2.pb-2 Confirm Password
-            input.form-control(type="password", placeholder="******", required="" name="cpassword")
+            div.mb-2.customField
+              label.pt-2.pb-2 Last name
+              input.form-control(class=errors['lastname'] ? 'is-invalid' : '', type="text", placeholder="Djo", name="lastname", value=form ? form.lastname : '')
+              unless !errors['lastname']
+                .invalid-feedback #{errors['lastname']}
+
+          .d-flex.justify-content-between
+            .mb-2.mr-2.customField
+              label.pt-2.pb-2 Username
+              input.form-control(class=errors['username'] ? 'is-invalid' : '', type="text", placeholder="pattersondj", name="username", value=form ? form.username : '')
+              unless !errors['username']
+                .invalid-feedback #{errors['username']}
+
+            .mb-2.customField
+              label.pt-2.pb-2 Email
+              input.form-control(class=errors['email'] ? 'is-invalid' : '', type="email", placeholder="john@gmail.com", name="email", value=form ? form.email : '')
+              unless !errors['email']
+                .invalid-feedback #{errors['email']}
+
+          .d-flex.justify-content-between
+            .mb-2.mr-2.customField
+              label.pt-2.pb-2 Password
+              input.form-control(class=errors['password'] ? 'is-invalid' : '', type="password", placeholder="******", name="password")
+              unless !errors['password']
+                .invalid-feedback #{errors['password']}
+
+            .mb-2.customField
+              label.pt-2.pb-2 Confirm Password
+              input.form-control(type="password", placeholder="******", name="cpassword")
       .card-footer
         .form-group.d-flex.justify-content-between
             div
               button.btn.btn-success.mr-2(type="submit") Register
               a.btn.btn-primary(href="/auth/login") Login
+        
             

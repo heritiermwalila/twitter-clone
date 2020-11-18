@@ -8,6 +8,8 @@ import {join} from 'path'
 import redis from "redis";
 import connectRedis from "connect-redis";
 import session from "express-session";
+import Database from './core/database'
+
 
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient();
@@ -38,5 +40,12 @@ app.use('/', appRoutes)
 
 const PORT = process.env.PORT || 5500
 
-server.listen(PORT, () => console.log(`server running on port ${PORT}`))
+server.listen(PORT, () => {
+  Database.connect().then(()=>{
+    console.log(`server running on port ${PORT}`)
+  }).catch(error=>{
+    console.log(error);
+    process.exit(1)
+  })
+})
 
