@@ -2,6 +2,7 @@ import { validationResult } from "express-validator";
 import User from '../core/schema/user.schema'
 import { getErrorParam } from "../core/validation/auth.validation";
 import {genSalt, hash, compare} from 'bcryptjs'
+import UserProfile from "../core/schema/profile.schema";
 
 /**
  * 
@@ -163,6 +164,10 @@ export const PostRegister = async (req, res, next) => {
       email,
       password: hashed,
     }).save();
+
+    await (
+      await UserProfile.create({ user: _id, image: "/images/avatar.webp" })
+    ).save();
 
     req.session.user = _id;
 

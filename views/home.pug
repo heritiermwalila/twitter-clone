@@ -22,10 +22,10 @@ block sideleft
     a.btn.btn-primary Something in mind ?
     .profile
       .avatar
-        image(src="/images/avatar.webp", width="49px" height="49px")
+        image(src=profile.image, width="49px" height="49px")
       .content
-        span Heritier
-        span @HeritierMwalila
+        span #{profile.user.firstname} #{profile.user.lastname}
+        span @#{profile.user.username}
     .logout
       form(action="/logout", method="post")
         button.btn.btn-warning(type="submit") Logout

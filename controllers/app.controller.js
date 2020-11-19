@@ -1,11 +1,19 @@
+import { ObjectId } from "mongodb";
+import UserProfile from "../core/schema/profile.schema";
 import User from "../core/schema/user.schema";
 
 const Home = async (req, res, next) => {
   try {
-    const user = await User.findById({  _id: req.session.user  });;
-    console.log(user);
-    res.status(200).render("home", { title: "Home" });
-  } catch (error) {}
+    const profile = await (
+      await UserProfile.findOne({ user: new ObjectId(req.session.user) })
+    )
+      .populate("user")
+      .execPopulate();
+
+    res.status(200).render("home", { title: "Home", profile });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const Profile = (req, res, next) => {
