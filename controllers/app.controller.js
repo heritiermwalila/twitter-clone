@@ -1,10 +1,12 @@
-const Home = (req, res, next) => {
+import User from "../core/schema/user.schema";
+
+const Home = async (req, res, next) => {
   try {
-    res.status(200).render('home', {title: 'Home'})
-  } catch (error) {
-    
-  }
-}
+    const user = await User.findById({  _id: req.session.user  });;
+    console.log(user);
+    res.status(200).render("home", { title: "Home" });
+  } catch (error) {}
+};
 
 const Profile = (req, res, next) => {
   try {

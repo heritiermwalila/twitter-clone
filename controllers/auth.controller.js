@@ -90,17 +90,24 @@ const Register = (req, res, next) => {
 export const PostRegister = async (req, res, next) => {
   try {
     req.session.errors = null;
-    const {firstname, lastname, username, email, password, cpassword } = req.body;
+    const {
+      firstname,
+      lastname,
+      username,
+      email,
+      password,
+      cpassword,
+    } = req.body;
     let errors = [];
     const { errors: validationErrors } = validationResult(req);
     if (validationErrors.length > 0) {
       errors = validationErrors;
     }
     if (password !== cpassword) {
-      errors.push({ msg: "Passwords does not match", param: 'password' });
+      errors.push({ msg: "Passwords does not match", param: "password" });
     }
 
-     /**
+    /**
      * Steps
      * -------------------
      * 1. Check the user in the db
@@ -108,62 +115,58 @@ export const PostRegister = async (req, res, next) => {
      * 3. Redirect to home page
      */
 
-    if(errors.length > 0){
-      
-      return res
-      .status(200)
-      .render("register", {
+    if (errors.length > 0) {
+      return res.status(200).render("register", {
         title: "Register",
-        errors:{
-          firstname: getErrorParam(errors, 'firstname'),
-          lastname: getErrorParam(errors, 'lastname'),
-          username: getErrorParam(errors, 'username'),
-          email: getErrorParam(errors, 'email'),
-          password: getErrorParam(errors, 'password'),
+        errors: {
+          firstname: getErrorParam(errors, "firstname"),
+          lastname: getErrorParam(errors, "lastname"),
+          username: getErrorParam(errors, "username"),
+          email: getErrorParam(errors, "email"),
+          password: getErrorParam(errors, "password"),
         },
-        form: {firstname, lastname, username, email },
+        form: { firstname, lastname, username, email },
       });
     }
 
-    
-
     const userExist = await User.findOne({
-      $or: [
-        {username},
-        {email}
-      ]
-    })
-    const emailExist = await User.exists({email})
+      $or: [{ username }, { email }],
+    });
+    // const emailExist = await User.exists({email})
 
-    console.log(emailExist);
+    if(userExist){
+      errors.push({
+        param: userExist.username === username ? 'username' : 'email',
+        msg: userExist.username === username ? 'This username is taken' : 'This email address is in used'
+      })
+    }
 
-    // if(userExist){
-    //   errors.push({param: userExist ? 'username' : 'email', msg: usernameExist ? 'This username is taken' : 'This email address is in used'})
-    // }
-
-    if(errors.length > 0){
-      return res
-      .status(200)
-      .render("register", {
+    if (errors.length > 0) {
+      return res.status(200).render("register", {
         title: "Register",
-        errors:{
-          username: getErrorParam(errors, 'username'),
-          email: getErrorParam(errors, 'email'),
+        errors: {
+          username: getErrorParam(errors, "username"),
+          email: getErrorParam(errors, "email"),
         },
-        form: {firstname, lastname, username, email },
+        form: { firstname, lastname, username, email },
       });
     }
 
     //2. Encrypt password
-    const salt = await genSalt(12)
-    const hashed = await hash(password, salt)
+    const salt = await genSalt(12);
+    const hashed = await hash(password, salt);
 
-    const {_id} = await new User({firstname, lastname, username, email, password: hashed}).save()
+    const { _id } = await new User({
+      firstname,
+      lastname,
+      username,
+      email,
+      password: hashed,
+    }).save();
 
-    req.session.user = _id
-    
-    res.status(200).redirect('/')
-    
+    req.session.user = _id;
+
+    res.status(200).redirect("/");
   } catch (error) {
     console.log(error);
   }
