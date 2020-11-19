@@ -72,6 +72,21 @@
 }
 
 .timeline_post_item_action {
-    border-top: 1px solid #f1f1f1;
-    padding-top: 10px;
+    margin-left: 49px;
+    margin-right: 49px;
+    padding: 10px;
+    }
+
+    .timeline_head_sub {
+        opacity: .5;
+        font-size: 12px;
+    }
+
+    .timeline_item_desc {
+        margin-left: 49px;
+        padding: 10px;
+    }
+
+    .timeline_post_item {
+        border-bottom: 1px solid #f1f1f1;
 }
