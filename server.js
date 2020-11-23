@@ -3,6 +3,7 @@ import http from 'http'
 import io from 'socket.io'
 import publicRoutes from './routes/public.route.'
 import appRoutes from './routes/app.route.'
+import apiRoutes from "./routes/api.route";
 const app = express()
 import {join} from 'path'
 import redis from "redis";
@@ -17,6 +18,7 @@ const redisClient = redis.createClient();
 const server = http.createServer(app)
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set('view engine', 'pug')
 app.set('views', 'views')
@@ -36,6 +38,7 @@ app.use(
 
 app.use("/auth", publicRoutes);
 app.use('/', appRoutes)
+app.use("/api", apiRoutes);
 
 const PORT = process.env.PORT || 5500
 

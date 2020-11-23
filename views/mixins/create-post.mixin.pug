@@ -3,8 +3,8 @@ mixin createPostForm(profilePic)
     .avatar
         image(src=profilePic, width="49px" height="49px")
     .head_body_content
-      form#addPostForm(action="#")
-            textarea#addPost(name="content", rows="1", placeholder="What is happening" class="form-control what_is_happening",)
+      form#addPostForm(action="#", method="POST")
+            textarea#addPostText(name="content", rows="1", placeholder="What is happening" class="form-control what_is_happening",)
             .everyone_can_reply
               span.icon-globe
               span Everyone can reply
@@ -15,4 +15,4 @@ mixin createPostForm(profilePic)
                 span.icon-trello
                 span.icon-smile
                 span.icon-calendar-plus-o
-              button.btn.btn-primary.addPost(type="submit") say it
+              button.btn.btn-primary#addPostFormBtn(type="button") say it

@@ -14,7 +14,7 @@ export const AddPost = async (req, res, next) => {
 
 export const GetPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find({});
+    const posts = await Post.find({}).populate("user");
     res.status(200).json(posts);
   } catch (error) {}
 };
