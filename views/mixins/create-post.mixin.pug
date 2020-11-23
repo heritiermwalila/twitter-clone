@@ -1,0 +1,18 @@
+mixin createPostForm(profilePic)
+  .head__body.d-flex
+    .avatar
+        image(src=profilePic, width="49px" height="49px")
+    .head_body_content
+      form#addPostForm(action="#")
+            textarea#addPost(name="content", rows="1", placeholder="What is happening" class="form-control what_is_happening",)
+            .everyone_can_reply
+              span.icon-globe
+              span Everyone can reply
+            .head_body_content_form_action
+              .icons_group.d-flex.align-items.center
+                span.icon-file-image
+                span.icon-file-video
+                span.icon-trello
+                span.icon-smile
+                span.icon-calendar-plus-o
+              button.btn.btn-primary.addPost(type="submit") say it

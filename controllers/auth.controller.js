@@ -166,7 +166,7 @@ export const PostRegister = async (req, res, next) => {
     }).save();
 
     await (
-      await UserProfile.create({ user: _id, image: "/images/avatar.webp" })
+      await UserProfile.create({ user: _id})
     ).save();
 
     req.session.user = _id;

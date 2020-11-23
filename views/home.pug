@@ -13,8 +13,10 @@ block sideleft
           a.link.icon-hashtag(href="/explore")  Explore
         li.link-item
           a.link.icon-bell(href="/notifications")  Notifications
+          span.notification_count  2
         li.link-item
           a.link.icon-mail(href="/messages")  Messages
+          span.notification_count  12
         li.link-item
           a.link.icon-user-o(href="/profile")  Profile
         li.link-item
@@ -28,84 +30,24 @@ block sideleft
         span @#{profile.user.username}
     .logout
       form(action="/logout", method="post")
-        button.btn.btn-warning(type="submit") Logout
+        button.btn.btn-warning.icon-logout(type="submit") Logout
 
 
 block timeline
   .timeline__head
     .head__title.d-flex.align-items-center
       h2 Home
-    .head__body.d-flex
-      .avatar
-        image(src="/images/avatar.webp", width="49px" height="49px")
-      .head_body_content
-        form(action="")
-          textarea(name="", rows="1", placeholder="What is happening" class="form-control what_is_happening")
-          .everyone_can_reply
-            span.icon-globe
-            span Everyone can reply
-          .head_body_content_form_action
-            .icons_group.d-flex.align-items.center
-              span.icon-file-image
-              span.icon-file-video
-              span.icon-trello
-              span.icon-smile
-              span.icon-calendar-plus-o
-            button.btn.btn-primary say it
+    +createPostForm(profile.image)
+        
 
 
     .head__end
     .timeline_post
-      .timeline_post_item.p-2
-        .timeline_post_item_content
-          .timeline_item_head.d-flex.align-items-center
-            .avatar.pb-3
-              image(src="/images/avatar.webp", width="49px" height="49px")
-            .timeline_item_head_content.pl-2
-              h4.h5.title.mb-0 BBC News(world)
-              p.timeline_head_sub
-                span Replying to 
-                a(href="") @BBCWorld
-          p.timeline_item_desc Roughly the same number of people across the US were in hospital with Covid during the first and second waves of the outbreak. But this third wave is even greater - by more than 70,000 at the moment
-        .timeline_post_item_action.d-flex.align-items.center.justify-content-between
-          .tweet_item
-            span.icon-comment
-            span 23
-          .item_item
-            span.icon-retweet
-            span 2
-          .item_item
-            span.icon-heart-empty
-            span 3
-          .item_item
-            span.icon-upload-cloud
-      .timeline_post_item.p-2.mt-3
-        .timeline_post_item_content
-          .timeline_item_head.d-flex.align-items-center
-            .avatar.pb-3
-              image(src="/images/avatar.webp", width="49px" height="49px")
-            .timeline_item_head_content.pl-2
-              h4.h5.title.mb-0 BBC News(world)
-              p.timeline_head_sub
-                span Replying to 
-                a(href="") @BBCWorld
-          p.timeline_item_desc Roughly the same number of people across the US were in hospital with Covid during the first and second waves of the outbreak. But this third wave is even greater - by more than 70,000 at the moment
-        .timeline_post_item_action.d-flex.align-items.center.justify-content-between
-          .tweet_item
-            span.icon-comment
-            span 23
-          .item_item
-            span.icon-retweet
-            span 2
-          .item_item
-            span.icon-heart-empty
-            span 3
-          .item_item
-            span.icon-upload-cloud
+      +postItem(profile)
 
 
 block sideright
-  .container.pt-2
+  .pt-2
     .search__bar
       form(action="", method="post")
         .input-group

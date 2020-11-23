@@ -34,11 +34,11 @@ html, body {
     border-top: 1px solid rgb(230, 236, 240);
   }
   .sidebarleft {
-    width: 20%;
+    width: 100%;
   }
 
   .sidebarright {
-    width: 30%;
+    width: 100%;
   }
   
   .sidebarleft {
@@ -50,7 +50,7 @@ html, body {
   }
   
   .timeline {
-    width: 50%;
+    width: 100%;
     /* background-color: #f1f1f1; */
     border-left: 1px solid rgb(230, 236, 240);
     border-right: 1px solid rgb(230, 236, 240);

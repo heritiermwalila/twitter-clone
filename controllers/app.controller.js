@@ -12,7 +12,7 @@ const Home = async (req, res, next) => {
 
     res.status(200).render("home", { title: "Home", profile });
   } catch (error) {
-    console.log(error);
+    
   }
 };
 

@@ -23,7 +23,6 @@ app.set('views', 'views')
 
 app.use(express.static(join(__dirname, 'public')))
 
-
 app.use(
   session({
     store: new RedisStore({ client: redisClient, prefix: 'twitter'}),

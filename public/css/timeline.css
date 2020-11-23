@@ -35,7 +35,8 @@
 .what_is_happening {
     border: 0;
     border-radius: unset;
-    padding: 18px 0;
+    padding-bottom: 18px;
+    resize: none;
 }
 
 .head__body > .avatar {

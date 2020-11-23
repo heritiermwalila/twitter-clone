@@ -1,3 +1,6 @@
+include ../mixins/create-post.mixin.pug
+include ../mixins/post-item.mixin.pug
+
 <!DOCTYPE html>
 html(lang="en")
   head
@@ -15,16 +18,19 @@ html(lang="en")
     title #{title}
   body
     .container.wrapper
-      .sidebarleft
-        block sideleft
-
-      .timeline
-        block timeline
-
-      .sidebarright
-        block sideright
+      .row
+        .col-md-3
+          .sidebarleft
+            block sideleft
+        .col-md-6.pr-0
+          .timeline
+            block timeline
+        .col-md-3
+          .sidebarright
+            block sideright
 
     footer
       script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
       script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
       script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js")
+      script(src="/js/common.js")
