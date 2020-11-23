@@ -1,14 +1,15 @@
-import {Schema, model} from 'mongoose'
+const { model, Schema } = require("mongoose");
 
-const Post = model('Post', new Schema({
-
+const Post = model(
+  "Post",
+  new Schema({
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-
     content: String,
-    pinned: Boolean
-}, {timestamps: true}))
+    pinned: Boolean,
+  })
+);
 
-export default Post
+export default Post;
